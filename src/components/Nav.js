@@ -3,6 +3,7 @@ import Switch from "react-switch";
 
 export function Nav() {
   const [checked, setChecked] = useState(false);
+  console.log(checked);
   const root = window.document.documentElement;
   const lightTheme = "light";
   const darkTheme = "dark";
