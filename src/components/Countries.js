@@ -6,6 +6,7 @@ import { Country } from "./Country";
 export function Countries() {
   const dispatch = useDispatch();
   const dataToMap = useSelector((state) => state.search.data);
+  const show = useSelector((state) => state.search.show);
 
   useEffect(() => {
     dispatch(fetchCountries());
@@ -13,18 +14,20 @@ export function Countries() {
 
   return (
     <section className="flex flex-wrap sm:flex-row flex-col items-center sm:items-start sm:w-11/12 w-full h-auto mx-auto">
-      {dataToMap.map((country, idx) => {
-        return (
-          <Country
-            key={idx}
-            name={country.name}
-            population={country.population}
-            region={country.region}
-            flag={country.flag}
-            capital={country.capital}
-          />
-        );
-      })}
+      {!show
+        ? dataToMap.map((country, idx) => {
+            return (
+              <Country
+                key={idx}
+                name={country.name}
+                population={country.population}
+                region={country.region}
+                flag={country.flag}
+                capital={country.capital}
+              />
+            );
+          })
+        : null}
     </section>
   );
 }

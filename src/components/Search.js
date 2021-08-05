@@ -1,6 +1,6 @@
 import React from "react";
 import Select from "react-select";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { searchCountry, searchByCategory } from "../features/searchSlice";
 
 const options = [
@@ -13,9 +13,9 @@ const options = [
 
 export function Search() {
   const dispatch = useDispatch();
+  const show = useSelector((state) => state.search.show);
 
   const handleChange = ({ target }) => {
-    console.log(target.value);
     dispatch(
       searchCountry({
         name: target.value,
@@ -31,7 +31,7 @@ export function Search() {
     );
   };
 
-  return (
+  return !show ? (
     <div className="flex flex-row flex-wrap justify-between w-11/12 my-6 sm:staticitems-center mx-auto">
       <div>
         <input
@@ -54,5 +54,5 @@ export function Search() {
         />
       </div>
     </div>
-  );
+  ) : null;
 }

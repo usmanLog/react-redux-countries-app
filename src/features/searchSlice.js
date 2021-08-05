@@ -16,6 +16,8 @@ const searchSlice = createSlice({
     data: [],
     word: null,
     category: null,
+    show: false,
+    selectedCountry: [],
   },
   reducers: {
     searchCountry: (state, action) => {
@@ -30,6 +32,14 @@ const searchSlice = createSlice({
         (country) => country.region === state.category
       );
     },
+    showCountry: (state, action) => {
+      state.show = action.payload;
+    },
+    currentCountry: (state, action) => {
+      state.selectedCountry = [...state.originalData].filter(
+        (country) => country.name === action.payload
+      );
+    },
   },
 
   extraReducers: {
@@ -42,6 +52,7 @@ const searchSlice = createSlice({
   },
 });
 
-export const { searchCountry, searchByCategory } = searchSlice.actions;
+export const { searchCountry, searchByCategory, showCountry, currentCountry } =
+  searchSlice.actions;
 
 export default searchSlice.reducer;
