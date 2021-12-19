@@ -1,13 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchCountries = createAsyncThunk(
-  "search/fetchCountries",
-  async () => {
-    const response = await fetch("https://restcountries.com/v3.1/all");
-    const data = await response.json();
-    return data;
-  }
-);
+export const fetchCountries = createAsyncThunk("search/fetchCountries", async () => {
+  const response = await fetch("https://restcountries.com/v3.1/all");
+  const data = await response.json();
+  return data;
+});
 
 const searchSlice = createSlice({
   name: "searchSlice",
@@ -28,9 +25,7 @@ const searchSlice = createSlice({
     },
     searchByCategory: (state, action) => {
       state.category = action.payload.word;
-      state.data = [...state.originalData].filter(
-        (country) => country.region === state.category
-      );
+      state.data = [...state.originalData].filter((country) => country.region === state.category);
     },
     showCountry: (state, action) => {
       state.show = action.payload;
@@ -52,7 +47,6 @@ const searchSlice = createSlice({
   },
 });
 
-export const { searchCountry, searchByCategory, showCountry, currentCountry } =
-  searchSlice.actions;
+export const { searchCountry, searchByCategory, showCountry, currentCountry } = searchSlice.actions;
 
 export default searchSlice.reducer;

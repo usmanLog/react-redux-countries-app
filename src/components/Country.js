@@ -18,11 +18,7 @@ export function Country({ flag, name, population, region, capital }) {
         className="sm:m-6 my-3 w-64 rounded-md overflow-hidden bg-white cursor-pointer shadow-md h-80 dark:bg-gray-600 dark:text-white"
       >
         <div className=" h-1/2 w-full overflow-hidden mt-0">
-          <img
-            className="h-full w-full block object-cover"
-            src={flag}
-            alt={name}
-          />
+          <img className="h-full w-full block object-cover" src={flag} alt={name} />
         </div>
 
         <div className="m-6 ">

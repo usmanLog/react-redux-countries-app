@@ -15,18 +15,16 @@ export function Countries() {
   return (
     <section className="flex flex-wrap sm:flex-row flex-col items-center sm:items-start sm:w-11/12 w-full h-auto mx-auto">
       {!show
-        ? dataToMap.map((country, idx) => {
-            return (
-              <Country
-                key={idx}
-                name={country.name}
-                population={country.population}
-                region={country.region}
-                flag={country.flag}
-                capital={country.capital}
-              />
-            );
-          })
+        ? dataToMap.map((country, idx) => (
+            <Country
+              key={idx}
+              name={country.name.official}
+              population={country.population}
+              region={country.region}
+              flag={country.flags.png}
+              capital={country.capital}
+            />
+          ))
         : null}
     </section>
   );
